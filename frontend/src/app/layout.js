@@ -30,7 +30,7 @@ export const metadata = {
     title: "Affiliate Postback Tracking System",
     description:
       "Track clicks, conversions, and revenue with this affiliate marketing MVP.",
-    url: "https://ujjwalsaini.dev",
+    url: "https://localhost:3000",
     siteName: "Affiliate Postback System",
     locale: "en_US",
     type: "website",
@@ -51,24 +51,30 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 text-gray-900`}
       >
-        {/* Header */}
-        <header className="w-full bg-black text-white shadow-md">
-          <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 className="text-lg font-bold tracking-wide">
-              Affiliate Postback System
+        <header className="w-full bg-black/60 backdrop-blur-md text-white shadow-md">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 className="text-xl font-bold tracking-wide">
+              Affiliate Postback Engine
             </h1>
+
             <nav className="space-x-6 text-sm font-medium">
-              <a href="/" className="hover:text-gray-300 transition">
+              <a
+                href="/"
+                className="hover:text-gray-300 transition-colors duration-200"
+              >
                 Home
               </a>
-              <a href="/affiliate/1" className="hover:text-gray-300 transition">
+              <a
+                href="/affiliate/1"
+                className="hover:text-gray-300 transition-colors duration-200"
+              >
                 Dashboard
               </a>
               <a
                 href="https://ujjwalsaini.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-300 transition"
+                className="hover:text-gray-300 transition-colors duration-200"
               >
                 Author
               </a>
@@ -76,14 +82,13 @@ export default function RootLayout({ children }) {
           </div>
         </header>
 
-        {/* Main Content */}
-        <main className="max-w-5xl mx-auto px-6 py-8">{children}</main>
+        <main className="max-w-7xl mx-auto px-6 py-10">{children}</main>
 
-        {/* Footer */}
-        <footer className="w-full bg-black text-gray-400 mt-12">
-          <div className="max-w-5xl mx-auto px-6 py-6 text-sm flex flex-col sm:flex-row justify-between items-center">
+        <footer className="w-full text-gray-400">
+          <div className="max-w-7xl mx-auto px-6 py-6 text-sm flex flex-col sm:flex-row justify-between items-center">
             <p>
-              © {new Date().getFullYear()} Affiliate Postback System. All rights reserved.
+              © {new Date().getFullYear()} Affiliate Postback System. All rights
+              reserved.
             </p>
             <p>
               Built by{" "}
