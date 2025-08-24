@@ -1,15 +1,43 @@
-# docker-compose.yml
-version: '3.8'
+version: '3.9'
+
 services:
   db:
-    image: postgres:15
+    image: postgres:15-alpine
+    container_name: affiliate_db
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: <your_password>
+      POSTGRES_PASSWORD: <your-password>
       POSTGRES_DB: affiliate_dev
     ports:
-      - "5433:5433"
+      - "5433:5432"
+    labels:
+      author: "Ujjwal Saini"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    container_name: affiliate_backend
+    ports:
+      - "4000:4000"
+    labels:
+      author: "Ujjwal Saini"
+    environment:
+      DATABASE_URL: postgres://postgres:<your-password>@db:5432/affiliate_dev
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: affiliate_frontend
+    ports:
+      - "3000:3000"
+    labels:
+      author: "Ujjwal Saini"
+    depends_on:
+      - backend
+
 volumes:
   pgdata:
