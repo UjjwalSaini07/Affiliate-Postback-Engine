@@ -1,0 +1,35 @@
+{
+  "viewport": "width=device-width, initial-scale=1.0",
+  "httpEquiv": "IE=edge",
+  "description": "Affiliate Postback Engine is a real-time affiliate tracking system that logs clicks, records server-to-server conversions, and provides a responsive dashboard for monitoring affiliate performance effortlessly.",
+  "author": "UjjwalS",
+  "keywords": "Affiliate Postback Engine, affiliate marketing, click tracking, conversion tracking, postback URL, S2S tracking, dashboard, real-time analytics, Next.js, React.js, Node.js, Express, PostgreSQL, TailwindCSS, Docker, GitHub",
+  "og": {
+    "title": "Affiliate Postback Engine: Real-Time Conversion Tracking",
+    "author": "UjjwalS",
+    "authorUrl": "https://www.ujjwalsaini.dev/",
+    "description": "Monitor affiliate clicks and track conversions in real-time with Affiliate Postback Engine, a streamlined dashboard designed for affiliates and marketers seeking efficiency and accuracy.",
+    "image": "/AffiliatePostbackLogo.png",
+    "url": "https://affiliate-postback.vercel.app/",
+    "type": "website",
+    "locale": "en_US",
+    "site_name": "Affiliate Postback Engine"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Affiliate Postback Engine: Real-Time Conversion Tracking",
+    "description": "Track affiliate clicks, log conversions securely, and visualize performance with a modern dashboard in Affiliate Postback Engine.",
+    "image": "/AffiliatePostbackLogo.png",
+    "site": "@AffiliatePostback",
+    "creator": "@UjjwalSaini0007"
+  },
+  "canonical": "https://affiliate-postback.vercel.app/",
+  "robots": "index, follow",
+  "themeColor": "#000000",
+  "rating": "General",
+  "distribution": "Global",
+  "copyright": "Affiliate Postback Engine ©2025",
+  "applicationName": "Affiliate Postback Engine",
+  "appleMobileWebAppTitle": "Affiliate Postback Engine",
+  "appleMobileWebAppCapable": "yes"
+}

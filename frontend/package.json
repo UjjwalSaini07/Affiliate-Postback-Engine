@@ -1,7 +1,45 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "mvp-postback-frontend",
+  "version": "1.0.0",
   "private": true,
+  "title": "Affiliate Postback Engine: Real-Time Conversion Tracking",
+  "description": "Monitor affiliate clicks, track server-to-server conversions, and visualize performance in a responsive dashboard with the Affiliate Postback Engine, designed for marketers and affiliate programs seeking efficiency and accuracy.",
+  "keywords": [
+    "Affiliate Postback Engine",
+    "affiliate marketing",
+    "conversion tracking",
+    "click tracking",
+    "postback URL",
+    "dashboard",
+    "real-time analytics",
+    "S2S tracking",
+    "affiliate dashboard",
+    "conversion logging",
+    "responsive UI",
+    "Next.js",
+    "React.js",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+    "Docker",
+    "TailwindCSS",
+    "GitHub"
+  ],
+  "author": "UjjwalS <ujjwalsaini0007+postbackengine@gmail.com>",
+  "authorUrl": "https://www.ujjwalsaini.dev/",
+  "license": "MIT",
+  "homepage": "https://github.com/UjjwalSaini07/Affiliate-Postback-Engine",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UjjwalSaini07/Affiliate-Postback-Engine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UjjwalSaini07/Affiliate-Postback-Engine/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=11.5.1"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",

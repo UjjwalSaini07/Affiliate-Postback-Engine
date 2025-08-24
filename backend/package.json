@@ -1,15 +1,17 @@
 {
-  "name": "backend",
+  "name": "mvp-postback-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "A sleek affiliate tracking system enabling real-time click logging, secure server-to-server conversion reporting, and a responsive dashboard for affiliates to monitor performance and revenue effortlessly",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon server.js",
+    "build": "echo 'No build step needed for plain JS'",
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "UjjwalS",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.5",
