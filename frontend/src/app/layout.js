@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -48,9 +49,18 @@ export default function RootLayout({ children }) {
       >
         <header className="w-full bg-black/60 backdrop-blur-md text-white shadow-md">
           <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 className="text-xl font-bold tracking-wide">
-              Affiliate Postback Engine
-            </h1>
+            <div className="flex items-center space-x-3">
+              <Image
+                src="/ServerLogo.png"
+                alt="Affiliate Postback Engine Logo"
+                width={22}
+                height={22}
+                className="w-auto h-auto"
+              />
+              <h1 className="text-xl font-bold tracking-wide">
+                Affiliate Postback Engine
+              </h1>
+            </div>
 
             <nav className="space-x-6 text-sm font-medium">
               <a

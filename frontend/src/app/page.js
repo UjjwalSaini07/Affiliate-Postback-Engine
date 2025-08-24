@@ -20,8 +20,9 @@ export default async function HomePage() {
       <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-8 text-center drop-shadow-lg">
         Affiliate Dashboard (MVP)
       </h1>
-      <p className="text-gray-400 mb-10 text-center max-w-md">
-        Select an affiliate to view their clicks, conversions, and unique postback URL.
+      <p className="text-gray-500 mb-10 text-center max-w-lg leading-relaxed">
+        Choose an affiliate to view their performance — track clicks, monitor conversions, 
+        and access a unique postback URL for secure attribution.
       </p>
 
       {/* Error or empty state */}
