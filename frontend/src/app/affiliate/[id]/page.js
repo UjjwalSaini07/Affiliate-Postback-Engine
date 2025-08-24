@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ClicksTable from "@/components/ClicksTable";
 import ConversionsTable from "@/components/ConversionsTable";
+import CSVExport from "@/components/CSVExport";
 
 async function getData(id) {
   try {
@@ -50,6 +51,8 @@ export default async function AffiliatePage({ params }) {
         <h2 className="font-semibold text-lg mb-2 text-indigo-300">Conversions</h2>
         <ConversionsTable conversions={conversions} />
       </section>
+
+      <CSVExport affiliateId={id} />
 
       <div className="mt-6">
         <Link
