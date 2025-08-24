@@ -6,7 +6,7 @@ This project is currently in the **development stage**.
 
 | Version | Support Status     |
 | ------- | ------------------ |
-| 0.1.0   | ✅ Fully Supported  |
+| 1.0.0   | ✅ Fully Supported  |
 
 ## 🔐 Our Commitment to Security
 
@@ -29,8 +29,8 @@ If you discover a security vulnerability, please follow these guidelines:
 
 You can report vulnerabilities by:
 
-- Opening a confidential issue on GitHub: [🚨 Raise Issue](https://github.com/UjjwalSaini07/NexGen-Quillix/issues)  
-- Or contacting us directly at:  `ujjwalsaini0007+quillix@gmail.com`
+- Opening a confidential issue on GitHub: [🚨 Raise Issue](https://github.com/UjjwalSaini07/Affiliate-Postback-Engine/issues)  
+- Or contacting us directly at:  `ujjwalsaini0007+postbackengine@gmail.com`
 
 ## ⚡ Response Process
 
