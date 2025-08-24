@@ -236,6 +236,32 @@ You can visit the live site here : --Temporarily Not Deployed--
     VALUES ((SELECT id FROM clicks WHERE affiliate_id = 3 AND click_id = 'abc999'), 200, 'USD')
     ON CONFLICT (click_id) DO NOTHING;"
 ```
+3. Important Alter Table Commands
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO clicks (click_id, affiliate_id, campaign_id)
+    VALUES ('usgs07', 1, 2)
+    ON CONFLICT (click_id) DO NOTHING;"
+```
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO conversions (click_id, amount, currency)
+    VALUES (
+      (SELECT id FROM clicks WHERE click_id = 'valid123' LIMIT 1), 550, 'USD')
+    ON CONFLICT (click_id) DO NOTHING;"
+```
+
+### Image Reference
+#### Data Adding in Database
+<img width="1375" height="817" alt="image" src="https://github.com/user-attachments/assets/1bbe8258-6534-4b9f-8303-eb3dd8f939e6" />
+
+#### Affiliate Dev Table Showcasing
+<img width="1187" height="1017" alt="image" src="https://github.com/user-attachments/assets/690e148a-8be5-4055-924c-26fb2a3ebde2" />
+
+#### PostgreSQL and PgAdmin 4 
+<img width="1915" height="1078" alt="image" src="https://github.com/user-attachments/assets/fd3664e0-3134-4ee4-857a-ca0c0aaef686" />
+
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/5f6957cb-6e6d-459e-82d3-fada78c10eb5" />
 
 ### 📊 Sample Test Data Inserts
 #### Affiliate 1 – Clicks & Conversions
@@ -374,9 +400,10 @@ You can visit the live site here : --Temporarily Not Deployed--
 - [@Ujjwal Saini](https://github.com/UjjwalSaini07)
 
 ## Screenshots 📷
-<img width="1918" height="925" alt="image" src="https://github.com/user-attachments/assets/4eaf9a3b-e9d3-4f49-abc4-b45d2465bfd3" />
-<img width="1897" height="917" alt="image" src="https://github.com/user-attachments/assets/a67ded65-2c61-4b7c-8f13-bb38c4d734f8" />
-<img width="1901" height="922" alt="image" src="https://github.com/user-attachments/assets/37dd53ca-eac9-4f3f-96e0-64e8474d9e99" />
+
+<img width="1900" height="922" alt="image" src="https://github.com/user-attachments/assets/9463bb65-91db-42b0-84e0-e7ee8b2f35db" />
+<img width="1901" height="925" alt="image" src="https://github.com/user-attachments/assets/9807add2-0fbb-4d5a-bf3b-9f36e6e7ac27" />
+<img width="1901" height="916" alt="image" src="https://github.com/user-attachments/assets/2ae6160e-cdf9-4b52-b570-801996ab9b86" />
 
 ### Terminal Data fetching
 <img width="1598" height="628" alt="image" src="https://github.com/user-attachments/assets/311d9c38-8cc7-42b1-8e43-c90f9277275f" />
