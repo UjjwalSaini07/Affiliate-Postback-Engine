@@ -1,6 +1,6 @@
 # Affiliate Postback Engine
 
-Experience the Server to Server Postback Tracking 🌟
+Power Your Attribution with Server-to-Server Postback Tracking ⚡ 
 
 A lightweight affiliate postback tracking system 🚀 built with Node.js, Postgres, and Next.js. It lets affiliates track clicks, record conversions via server-to-server postbacks, and monitor results in a sleek dashboard. Designed as an MVP, it highlights the core principles of affiliate tracking and attribution—simple, clear, and extendable. Perfect for learning or building upon in real-world projects. 📊
 
@@ -104,7 +104,7 @@ You can visit the live site here : --Temporarily Not Deployed--
 ```bash
     docker compose ps
 ```
-### It look like this
+### Here’s how it looks
 <img width="1918" height="871" alt="image" src="https://github.com/user-attachments/assets/9c3a2220-de9a-4e63-a756-1a92072f3f38" />
 
 - It Open the Database on **Port - 5432**
@@ -157,7 +157,7 @@ You can visit the live site here : --Temporarily Not Deployed--
 - Built for **real-world extensibility**: future improvements will include authentication, HMAC signing for postbacks, and rate limiting for better security and reliability.  
 - Can be easily tested using `curl`, Postman, or Hoppscotch without any extra setup.
 
-### 🔗 Endpoints Overview
+## 🔗 Endpoints Overview
 
 - **Log a Click:** `GET /click?affiliate_id=&campaign_id=&click_id=`
 
@@ -169,36 +169,36 @@ You can visit the live site here : --Temporarily Not Deployed--
 
 - **Get All Conversions for an Affiliate:** `GET /affiliates/:id/conversions`
 
-### ⚡ Testing of the Requests (cURL) - Use Postman
+## ⚡ Testing of the Requests (cURL) - Use Postman
 
 - 📍 **Log a click**  
 ```bash
     curl "http://localhost:4000/click?affiliate_id=1&campaign_id=1&click_id=abc123"
 ```
-- 📍 Send a postback (conversion)
+- 📍 **Send a postback (conversion)**
 ```bash
     curl "http://localhost:4000/postback?affiliate_id=1&click_id=abc123&amount=100&currency=USD"
 ```
-- 📍 Check for Error- Something Went Wrong {Passes Wrong Payload}
+- 📍 **Check for Error- Something Went Wrong {Passes Wrong Payload}**
 ```bash
     curl "http://localhost:4000/postback?affiliate_id=2&click_id=abc123&amount=100&currency=USD"
 ```
-- 📍 Get conversions for affiliate 1
+- 📍 **Get conversions for affiliate 1**
 ```bash
     curl "http://localhost:4000/affiliates/1/conversions"
 ```
 
-### Image Reference of Postman API Hiting
-#### Curl Request 1: GET Method
+## Image Reference for Postman API Hiting
+#### Curl Request 1: GET Method - Log a click 
 <img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/89abe168-8e14-41d2-87b7-0bfcf35b55bc" />
 
-#### Curl Request 2: GET Method
+#### Curl Request 2: GET Method - Send a postback (conversion)
 <img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/b5b53419-1ce5-453e-9ceb-23f0dd4d218a" />
 
-#### Curl Request 3: GET Method
+#### Curl Request 3: GET Method - Check for Error
 <img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/55e65d4b-970a-4905-9580-6d3c68001c02" />
 
-#### Curl Request 4: GET Method
+#### Curl Request 4: GET Method - Get conversions for affiliate
 <img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/32fe0807-9b17-4321-b89d-ad76280b54dd" />
 
 ## DataBase Setup Locally ⚙️
@@ -300,6 +300,68 @@ You can visit the live site here : --Temporarily Not Deployed--
 - **Caveat (MVP Limitation)**:  
   - Current implementation uses **`GET` requests** for simplicity (common in affiliate postback flows).  
   - Future iterations should move to **`POST + JSON body + HMAC`** for stronger security and industry alignment.  
+
+## Install PostgreSQL
+1. PostgreSQL as a Client
+- Install Postgres locally:
+- Download from: `https://www.postgresql.org/download/windows/`
+- During setup, tick “Command Line Tools”.
+- Open a new PowerShell or Git Bash and run:
+```bash
+    psql -U postgres -h localhost -p 5432 -d affiliate_dev -f db/schema.sql
+```
+2. Use Docker’s built-in psql inside your container
+- If you’re running Postgres in Docker (like we set up with docker-compose.yml)
+```bash
+    docker exec -it affiliate-postback-engine-db-1 psql -U postgres -d affiliate_dev -f /docker-entrypoint-initdb.d/schema.sql
+```
+- But for that to work, you’d need to copy your `schema.sql` and `seed.sql` into the container first
+```bash
+    docker cp db/schema.sql affiliate-postback-engine-db-1:/docker-entrypoint-initdb.d/schema.sql
+```
+```bash
+    docker cp db/seed.sql affiliate-postback-engine-db-1:/docker-entrypoint-initdb.d/seed.sql
+```
+- Then run the `docker exec` command.
+- Test connection
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "\dt"
+```
+#### Just same as in this Image
+<img width="1390" height="592" alt="image" src="https://github.com/user-attachments/assets/2788c507-3978-4300-bdb3-e1a89e726f9c" />
+
+> [!IMPORTANT]  
+> If this is Not shown on Test Connection So Follow Below Procedure Step By Step, Author: UjjwalS
+
+### Setup Database
+#### Step 1: Create the database
+```bash
+    psql -U postgres -h localhost -p 5433 -c "CREATE DATABASE affiliate_dev;"
+```
+- Enter your password when prompted.
+#### Step 2: Apply schema
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -f db/schema.sql
+```
+#### Step 3: Seed sample data
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -f db/seed.sql
+```
+#### Step 4: Verify tables exist
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "\dt"
+```
+- Your database setup is complete with seed data and schema synchronization.
+- Load sample data
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -f db/seed.sql
+```
+- Then check
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "SELECT * FROM affiliates;"
+```
+
+<img width="1631" height="827" alt="image" src="https://github.com/user-attachments/assets/88e65b58-a261-4e8c-b957-ba363c88f37c" />
 
 ## Resources 📚
 - [Nodejs Docs](https://nodejs.org/en)
