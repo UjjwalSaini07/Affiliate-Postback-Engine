@@ -148,6 +148,159 @@ You can visit the live site here : --Temporarily Not Deployed--
 5. Now Simply use the Project using Docker Container
 6. **If u Want Direct Image Without Cloning So Contact with Me. [Contact](https://github.com/UjjwalSaini07/Affiliate-Postback-Engine/issues/new)**
 
+## 📡 API Endpoints & Requests Procedure
+
+- This project provides lightweight yet powerful **tracking and postback APIs** designed for affiliate marketing workflows.  
+- Current MVP implementation uses `GET` requests for simplicity (future versions will support `POST` with JSON payloads for better scalability).  
+- Each endpoint is designed with **idempotency in mind**, ensuring duplicate clicks or conversions are safely ignored.  
+- Responses are JSON formatted, making them easy to consume programmatically or test manually.  
+- Built for **real-world extensibility**: future improvements will include authentication, HMAC signing for postbacks, and rate limiting for better security and reliability.  
+- Can be easily tested using `curl`, Postman, or Hoppscotch without any extra setup.
+
+### 🔗 Endpoints Overview
+
+- **Log a Click:** `GET /click?affiliate_id=&campaign_id=&click_id=`
+
+- **Send a Postback (Conversion):** `GET /postback?affiliate_id=&click_id=&amount=&currency=`
+
+- **List Affiliates:** `GET /affiliates`
+
+- **Get All Clicks for an Affiliate:** `GET /affiliates/:id/clicks`
+
+- **Get All Conversions for an Affiliate:** `GET /affiliates/:id/conversions`
+
+### ⚡ Testing of the Requests (cURL) - Use Postman
+
+- 📍 **Log a click**  
+```bash
+    curl "http://localhost:4000/click?affiliate_id=1&campaign_id=1&click_id=abc123"
+```
+- 📍 Send a postback (conversion)
+```bash
+    curl "http://localhost:4000/postback?affiliate_id=1&click_id=abc123&amount=100&currency=USD"
+```
+- 📍 Check for Error- Something Went Wrong {Passes Wrong Payload}
+```bash
+    curl "http://localhost:4000/postback?affiliate_id=2&click_id=abc123&amount=100&currency=USD"
+```
+- 📍 Get conversions for affiliate 1
+```bash
+    curl "http://localhost:4000/affiliates/1/conversions"
+```
+
+### Image Reference of Postman API Hiting
+#### Curl Request 1: GET Method
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/89abe168-8e14-41d2-87b7-0bfcf35b55bc" />
+
+#### Curl Request 2: GET Method
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/b5b53419-1ce5-453e-9ceb-23f0dd4d218a" />
+
+#### Curl Request 3: GET Method
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/55e65d4b-970a-4905-9580-6d3c68001c02" />
+
+#### Curl Request 4: GET Method
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/32fe0807-9b17-4321-b89d-ad76280b54dd" />
+
+## DataBase Setup Locally ⚙️
+### 🔎 Quick Check
+- Open Powershell or Cmd on dir - `cd Affiliate-Postback-Engine`
+- Run this to view all conversions joined with their clicks (ordered by affiliate):
+
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    SELECT c.id, c.amount, c.currency, cl.click_id, cl.affiliate_id
+    FROM conversions c
+    JOIN clicks cl ON c.click_id = cl.id
+    ORDER BY cl.affiliate_id;"
+```
+
+### Check if click exists
+1. 🔍 Individual Check
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    SELECT * FROM clicks WHERE affiliate_id = 3 AND click_id = 'abc999';"
+```
+- If 0 rows returned, insert the click first:
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO clicks (affiliate_id, campaign_id, click_id)
+    VALUES (3, 2, 'abc999')
+    ON CONFLICT (affiliate_id, campaign_id, click_id) DO NOTHING;"
+```
+- Adjust campaign_id to a valid campaign for that affiliate.
+
+2. Insert conversion safely
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO conversions (click_id, amount, currency)
+    VALUES ((SELECT id FROM clicks WHERE affiliate_id = 3 AND click_id = 'abc999'), 200, 'USD')
+    ON CONFLICT (click_id) DO NOTHING;"
+```
+
+### 📊 Sample Test Data Inserts
+#### Affiliate 1 – Clicks & Conversions
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO clicks (affiliate_id, campaign_id, click_id)
+    VALUES 
+      (1, 1, 'abc123'),
+      (1, 1, 'def456')
+    ON CONFLICT (affiliate_id, campaign_id, click_id) DO NOTHING;"
+    
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO conversions (click_id, amount, currency)
+    VALUES
+      ((SELECT id FROM clicks WHERE affiliate_id = 1 AND click_id = 'abc123'), 100, 'USD'),
+      ((SELECT id FROM clicks WHERE affiliate_id = 1 AND click_id = 'def456'), 150, 'USD')
+    ON CONFLICT (click_id) DO NOTHING;"
+```
+#### Affiliate 2 – Clicks & Conversions
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO clicks (affiliate_id, campaign_id, click_id)
+    VALUES 
+      (2, 2, 'xyz999'),
+      (2, 2, 'uvw111')
+    ON CONFLICT (affiliate_id, campaign_id, click_id) DO NOTHING;"
+    
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO conversions (click_id, amount, currency)
+    VALUES
+      ((SELECT id FROM clicks WHERE affiliate_id = 2 AND click_id = 'xyz999'), 50, 'USD'),
+      ((SELECT id FROM clicks WHERE affiliate_id = 2 AND click_id = 'uvw111'), 75, 'USD')
+    ON CONFLICT (click_id) DO NOTHING;"
+```
+#### Affiliate 3 – Clicks & Conversions
+```bash
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO clicks (affiliate_id, campaign_id, click_id)
+    VALUES 
+      (3, 1, 'lmn123'),
+      (3, 1, 'opq456')
+    ON CONFLICT (affiliate_id, campaign_id, click_id) DO NOTHING;"
+    
+    psql -U postgres -h localhost -p 5433 -d affiliate_dev -c "
+    INSERT INTO conversions (click_id, amount, currency)
+    VALUES
+      ((SELECT id FROM clicks WHERE affiliate_id = 3 AND click_id = 'lmn123'), 120, 'USD'),
+      ((SELECT id FROM clicks WHERE affiliate_id = 3 AND click_id = 'opq456'), 90, 'USD')
+    ON CONFLICT (click_id) DO NOTHING;"
+```
+
+## 🔒 Security & Correctness Notes
+
+- **Validation**: Every conversion request validates that the given `affiliate_id` and `click_id` pair exists before inserting. This ensures conversions cannot be logged against mismatched or invalid clicks.  
+- **Idempotency**:  
+  - The `conversions` table enforces a **`UNIQUE(click_id)` constraint** to guarantee no duplicate conversions for the same click.  
+  - The `/postback` route also performs a check and returns **`409 Conflict`** if a duplicate is attempted.  
+- **SQL Injection Prevention**: All database interactions use **parameterized queries** (`$1, $2, …`) to safely handle user input.  
+- **Optional Security Improvements**:  
+  - **HMAC-Signed Postbacks**: Advertisers could sign each postback request using a shared secret.  
+  - The backend would verify the signature before processing, ensuring requests cannot be forged or tampered with.  
+- **Caveat (MVP Limitation)**:  
+  - Current implementation uses **`GET` requests** for simplicity (common in affiliate postback flows).  
+  - Future iterations should move to **`POST + JSON body + HMAC`** for stronger security and industry alignment.  
+
 ## Resources 📚
 - [Nodejs Docs](https://nodejs.org/en)
 - [Tailwind Docs](https://tailwindcss.com/docs/installation/using-vite)
