@@ -10,7 +10,8 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "UjjwalS",
+  "author": "UjjwalS <ujjwalsaini0007+postbackengine@gmail.com>",
+  "authorUrl": "https://www.ujjwalsaini.dev/",
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
