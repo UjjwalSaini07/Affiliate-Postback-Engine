@@ -15,14 +15,7 @@ export const metadata = {
   title: "Affiliate Postback Tracking System | MVP",
   description:
     "An affiliate tracking MVP with click logging, S2S postbacks, and a simple dashboard built using Next.js, Express, and PostgreSQL.",
-  keywords: [
-    "Affiliate Marketing",
-    "Postback URL",
-    "S2S Tracking",
-    "Next.js",
-    "PostgreSQL",
-    "MVP Project",
-  ],
+  keywords: [ "Affiliate Marketing", "Postback URL", "S2S Tracking", "Next.js", "PostgreSQL", "MVP Project", ],
   authors: [{ name: "Ujjwal", url: "https://ujjwalsaini.dev" }],
   creator: "Ujjwal",
   publisher: "Affiliate Postback Engine",
@@ -45,9 +38,11 @@ export const metadata = {
   metadataBase: new URL("https://ujjwalsaini.dev"),
 };
 
+const year = 2025;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 text-gray-900`}
       >
@@ -86,10 +81,7 @@ export default function RootLayout({ children }) {
 
         <footer className="w-full text-gray-400">
           <div className="max-w-7xl mx-auto px-6 py-6 text-sm flex flex-col sm:flex-row justify-between items-center">
-            <p>
-              © {new Date().getFullYear()} Affiliate Postback System. All rights
-              reserved.
-            </p>
+            <p>© {year} Affiliate Postback System. All rights reserved.</p>
             <p>
               Built by{" "}
               <a

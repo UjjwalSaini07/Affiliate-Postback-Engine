@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
 
-export default function PostbackUrlPage({ params }) {
-  const { id } = params;
+export default function PostbackUrlPage() {
+  const { id } = useParams();
   const [copied, setCopied] = useState(false);
 
   const url = `https://affiliate-system.com/postback?affiliate_id=${id}&click_id={click_id}&amount={amount}&currency={currency}`;
@@ -20,7 +21,7 @@ export default function PostbackUrlPage({ params }) {
   };
 
   return (
-    <div className="min-h-screen bg-black text-gray-100 p-8">
+    <div className="min-h-screen text-gray-100 p-8">
       <div className="max-w-3xl mx-auto space-y-6">
         <h1 className="text-3xl font-bold text-indigo-400">
           Affiliate {id} Postback URL

@@ -23,12 +23,12 @@ async function getData(id) {
 }
 
 export default async function AffiliatePage({ params }) {
-  const { id } = params;
+  const { id } = await params;
   const { clicks, conversions, error } = await getData(id);
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black text-white p-6">
+      <div className="min-h-screen flex items-center justify-center text-white p-6">
         <div className="bg-red-900/30 backdrop-blur-md border border-red-700 text-red-400 rounded-2xl p-6 max-w-md text-center">
           <h2 className="text-xl font-bold mb-2">Error Loading Affiliate Data</h2>
           <p>{error}</p>
@@ -38,7 +38,7 @@ export default async function AffiliatePage({ params }) {
   }
 
   return (
-    <div className="p-8 min-h-screen bg-black text-white">
+    <div className="p-8 min-h-screen text-white">
       <h1 className="text-3xl font-bold text-indigo-400 mb-6">Affiliate {id} Dashboard</h1>
 
       <section className="mb-6">
