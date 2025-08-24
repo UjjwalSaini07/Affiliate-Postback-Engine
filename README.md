@@ -118,6 +118,7 @@ You can visit the live site here : --Temporarily Not Deployed--
 ```bash
     pnpm dev
 ```
+- Frontend Operates on `Port: http://localhost:3000`
 ### For Backend
 - Start the Backend Development server
 ```bash
@@ -126,8 +127,10 @@ You can visit the live site here : --Temporarily Not Deployed--
 ```bash
     pnpm dev
 ```
+- Backend Operates on `Port: http://localhost:4000`
 ### For Database
 - You can run it using **Docker** or initialize it locally with the **PostgreSQL command-line service** — it depends on how you prefer to start the database engine.
+- Database Operates on `Port: http://localhost:5433`
 
 ## Project Setup Using Docker Containerization:
 1. Start the Docker Engine Locally or Use Any Service Globally
