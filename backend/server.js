@@ -23,9 +23,26 @@ app.use('/postback', postbackRouter);   // GET /postback?affiliate_id=...&click_
 app.use('/affiliates', affiliatesRouter);
 
 // Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+app.get('/health', async (req, res) => {
+  const health = {
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  };
+
+  try {
+    await pool.query('SELECT 1');
+    health.database = 'connected';
+  } catch (err) {
+    console.error('Health check DB error:', err);
+    health.database = 'disconnected';
+    health.status = 'error';
+    return res.status(500).json(health);
+  }
+
+  res.json(health);
 });
+
 
 // Error handler (for async route errors)
 app.use((err, req, res, next) => {
