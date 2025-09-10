@@ -6,8 +6,8 @@ import CSVExport from "@/components/CSVExport";
 async function getData(id) {
   try {
     const [clicksRes, convsRes] = await Promise.all([
-      fetch(`http://localhost:4000/affiliates/${id}/clicks`, { cache: "no-store" }),
-      fetch(`http://localhost:4000/affiliates/${id}/conversions`, { cache: "no-store" }),
+      fetch(`https://affiliate-postback-engine.onrender.com/affiliates/${id}/clicks`, { cache: "no-store" }),
+      fetch(`https://affiliate-postback-engine.onrender.com/affiliates/${id}/conversions`, { cache: "no-store" }),
     ]);
 
     const clicksJson = await clicksRes.json();

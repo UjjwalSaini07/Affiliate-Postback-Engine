@@ -8,7 +8,8 @@ export default function PostbackUrlPage() {
   const [copied, setCopied] = useState(false);
 
   const url = `https://affiliate-system.com/postback?affiliate_id=${id}&click_id={click_id}&amount={amount}&currency={currency}`;
-  const exampleUrl = `http://localhost:4000/postback?affiliate_id=${id}&click_id=abc123&amount=100&currency=USD`;
+  const exampleUrl = `https://affiliate-postback-engine.onrender.com/postback?affiliate_id=${id}&click_id=abc123&amount=100&currency=USD`;
+  // const exampleUrl = `http://localhost:4000/postback?affiliate_id=${id}&click_id=abc123&amount=100&currency=USD`;
 
   const handleCopy = async () => {
     try {

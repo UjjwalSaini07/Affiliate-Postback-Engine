@@ -5,7 +5,8 @@ export default function CSVExport({ affiliateId }) {
   const handleDownload = async (type) => {
     try {
       const res = await fetch(
-        `http://localhost:4000/affiliates/${affiliateId}/${type}?format=csv`
+        `https://affiliate-postback-engine.onrender.com/affiliates/${affiliateId}/${type}?format=csv`
+        // `http://localhost:4000/affiliates/${affiliateId}/${type}?format=csv`
       );
       if (!res.ok) throw new Error("Failed to fetch CSV");
 

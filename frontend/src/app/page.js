@@ -2,7 +2,7 @@ import Link from "next/link";
 
 async function getAffiliates() {
   try {
-    const res = await fetch("http://localhost:4000/affiliates", { cache: "no-store" });
+    const res = await fetch("https://affiliate-postback-engine.onrender.com/affiliates", { cache: "no-store" });
     if (!res.ok) throw new Error(`Failed to fetch affiliates: ${res.status}`);
     const json = await res.json();
     return Array.isArray(json) ? json : json.data || [];
