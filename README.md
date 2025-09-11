@@ -408,6 +408,15 @@ You can visit the live site here : --Temporarily Not Deployed--
 <img width="1901" height="925" alt="image" src="https://github.com/user-attachments/assets/9807add2-0fbb-4d5a-bf3b-9f36e6e7ac27" />
 <img width="1901" height="916" alt="image" src="https://github.com/user-attachments/assets/2ae6160e-cdf9-4b52-b570-801996ab9b86" />
 
+## Video Demonstration 📷
+### WebApp Demonstration
+
+https://github.com/user-attachments/assets/6e3e1379-7b59-4915-a5a1-2ce769b33885
+
+### Code Demonstration
+
+https://github.com/user-attachments/assets/953cb854-1da6-4920-9627-003b001b0bb9
+
 ### Terminal Data fetching
 <img width="1598" height="628" alt="image" src="https://github.com/user-attachments/assets/311d9c38-8cc7-42b1-8e43-c90f9277275f" />
 
