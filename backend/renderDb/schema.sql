@@ -29,7 +29,7 @@ CREATE TABLE clicks (
 -- Conversions table
 CREATE TABLE conversions (
   id SERIAL PRIMARY KEY,
-  click_ref INTEGER NOT NULL REFERENCES clicks(id) ON DELETE CASCADE,
+  click_id INTEGER NOT NULL REFERENCES clicks(id) ON DELETE CASCADE,
   amount DOUBLE PRECISION NOT NULL CHECK (amount >= 0),
   currency VARCHAR(3) NOT NULL,
   timestamp TIMESTAMP WITH TIME ZONE DEFAULT now()
@@ -38,5 +38,5 @@ CREATE TABLE conversions (
 -- Indexes for faster lookups
 CREATE INDEX idx_clicks_affiliate ON clicks(affiliate_id);
 CREATE INDEX idx_clicks_clickid   ON clicks(click_id);
-CREATE INDEX idx_conversions_clickref ON conversions(click_ref);
+CREATE INDEX idx_conversions_clickid ON conversions(click_id);
 CREATE INDEX idx_conversions_timestamp ON conversions(timestamp);
